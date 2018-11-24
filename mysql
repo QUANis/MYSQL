@@ -1,0 +1,64 @@
+mysql的特点：
+支持多种操作系统Windowa Unix Linux
+支持多种开发语言 php perl python
+系统自带的软件包要卸载 查询 rpm -q mariadb-server
+提供服务的软件包 rpm -e --nodeps mariadb-server
+提供管理工具的命令rpm -e --nodeps mariadb
+删除前一定要服务停掉 systemctl stop mariadb
+卸载一定要对应的配置主文件要删除 rm -rf /etc/my.cnf
+对应的mysql配置文件也要删除 rm -rf /var/lib/mysql/*
+软件 tar -xvf mysql
+查看 ls *.rpm
+提供数据库的主包mysql-community-server 
+提供数据库的命令包mysql-community-client
+全新安装rpm -ivh
+升级安装rpm -Uvh mysql-community-*.rpm
+安装软件包有依赖 
+查看 rpm -qa | grep -i mysql
+启动服务初始化systemctl start mysql
+开机自起systemctl enable mysql 
+启动服务后看以下的服务 
+查看端口是否启动 netstat -atlunp | grep 3306
+启动进程服务 ps -C mysql
+数据库目录 ls/var/lib/mysql
+主配置文件 ls /etc/my.cnf
+用户连接数据库的有3种常用的是（命令行）（脚本php python)(图形工具）
+mysql -h数据库服务器IP地址 -u连接数据库的用户 -p密码
+数据库初始密码 ls/var/log/mysqld.log
+过滤密码grep password /var/log/mysqld.log
+登陆数据库的密码不可以用的要修改密码
+数据库密码复杂度策论
+alter user root@"localhost" identified by "123qqq...A“；
+退出数据库exit quit
+登陆数据库
+mysql -uroot -p123qqq...A
+查看数据库机构
+show databases;
+查看数据库所有的变量like=过滤
+show variables like "%password%";
+密码策略
+validate_password_policy   策略值MEDIUM
+修改密码策略值为
+0 or LOW          
+1 or MEDIUM(默认)  长度：数字，小写/大写 ，和特殊字符
+2 or STRONG        长度：数字，小写/大写和特殊字符；字典文件
+修改密码全局变量
+set  global validate_password_policy=0;
+修改密码的长度
+set global validate_password_length=6
+修改密码为
+alter user root@"localhost" identified by "123456“；
+退出
+quit
+systectl stop mysql
+修改配置文件保持密码永久有效vim /etc/my.cnf
+[mysqld]
+validate_password_policy=0
+alidate_password_length=6
+重起服务
+systecctl restal mysql
+数据库管理命令 查看服务器上已有的库 切换库 删除库 查看库里已有的表
+查看已有的库
+show databases;
+创建库
+create database gamedb;   gamedb=表名
