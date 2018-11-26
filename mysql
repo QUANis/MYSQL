@@ -1,4 +1,25 @@
 mysql的特点：
+使用mysql> 管理环境
+操作指令型
+MYSQL指令：环境切换，看状态，退出等控制
+SQL指令  ：数据库定义/查询/操作/授权语句
+基本注意事项
+操作指定不区分大小写（密码，变量值除外）
+每条SQL指令以；结束或分隔
+不支持Tab健自动补齐
+\c可废弃当前编写的操作指
+常用的SQL指令
+DDL数据定义语言（create  alte  drop)
+DML数据操作语言（insert   update  delete)
+DCL数据控制语言（grant  revoke)
+DTL数据事物语言（commit rollback savepoint)
+数据库管理命
+show databases;             //显示已有的库
+user 库名；                 //切换库
+select database();        //显示当前所在的库
+create database 库名；    //创建新库
+show tables;            //显示已有的表 
+drop databases 库名;     //删除库
 支持多种操作系统Windowa Unix Linux
 支持多种开发语言 php perl python
 系统自带的软件包要卸载 查询 rpm -q mariadb-server
@@ -62,3 +83,33 @@ systecctl restal mysql
 show databases;
 创建库
 create database gamedb;   gamedb=表名
+显示当前所在的库 函数database()
+select database();
+表管理命令
+表就要在库里创建表就算文件
+create table tom.a(姓名 char(3),年龄 int);     tom=库名   a=表明
+use to
+show tables;
+查看表结构
+desc tom.a;
+删除表 drop table tom.a;
+记录管理命令 
+记录类似于文件里行
+select *from 表名；                  //查看表记录
+insert into 表名  values（值列表）;   //插入表记录 字符要用双引起来"tom"
+update 表明 set 字段=值;             //修改表记录
+delete from 表名;                   //删除表记录 
+插入表记录 insert into 库名.库 values("tom",21),("lisi",22);
+修改表记录 update tom.a set 年龄=21 where 姓名="tom";
+删除表记录 delete from tom.a where 姓名="tom"
+数据库服务器<---库<---表<---记录<---列
+设置表使用字符集 gb2312 utf8
+查看表的创建表的命令
+show creat table t1;查看字符集
+创建表字符ccreate table 学生表（姓名 char(3), 年龄 int )
+DEFAULT CHARSET=utf8;
+insert into 学生表 values("张三",19);
+select *from 学生表;
+
+
+
